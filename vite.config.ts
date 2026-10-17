@@ -55,7 +55,8 @@ export default defineConfig({
     })
   ],
   resolve: {
-    alias: { '@': path.resolve(__dirname, './src') }
+    // 用 import.meta.dirname 替代 __dirname，规避 Vite 8 native config loader 警告
+    alias: { '@': path.resolve(import.meta.dirname, './src') }
   },
   build: {
     target: 'es2020',
