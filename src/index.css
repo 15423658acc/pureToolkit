@@ -21,8 +21,8 @@
   /* 工具主色 */
   --color-wheel: #f59e0b;       /* 转盘 - 暖橙 */
   --color-wheel-soft: #fef3c7;
-  --color-expiry: #ef4444;      /* 保质期 - 警示红 */
-  --color-expiry-soft: #fee2e2;
+  --color-expiry: #ffad99;      /* 保质期 - 桃粉色（温柔，区别于"已过期"状态红） */
+  --color-expiry-soft: #fff0eb;
   --color-media: #3b82f6;       /* 清单 - 信息蓝 */
   --color-media-soft: #dbeafe;
   --color-schedule: #a855f7;    /* 日程 - 紫罗兰 */

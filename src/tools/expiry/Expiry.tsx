@@ -181,7 +181,7 @@ export default function Expiry() {
               className={clsx(
                 'w-9 h-9 rounded-xl inline-flex items-center justify-center transition',
                 view === mode
-                  ? 'bg-stone-900 text-white'
+                  ? 'bg-[#ffad99] text-stone-900 hover:bg-[#ff9a83]'
                   : 'text-stone-500 hover:bg-stone-100'
               )}
             >
@@ -209,7 +209,7 @@ export default function Expiry() {
               className={clsx(
                 'px-2.5 h-7 rounded-full text-xs font-medium transition',
                 filter === c.key
-                  ? 'bg-stone-900 text-white'
+                  ? 'bg-[#ffad99] text-stone-900 hover:bg-[#ff9a83]'
                   : 'bg-stone-100 text-stone-500 hover:bg-stone-200'
               )}
             >
@@ -264,7 +264,7 @@ export default function Expiry() {
       <button
         onClick={handleAdd}
         aria-label="添加物品"
-        className="fixed bottom-6 right-4 w-14 h-14 rounded-full bg-stone-900 text-white shadow-lg flex items-center justify-center active:scale-95 transition z-30"
+        className="fixed bottom-6 right-4 w-14 h-14 rounded-full bg-[#ffad99] text-stone-900 shadow-lg flex items-center justify-center hover:bg-[#ff9a83] active:scale-95 transition z-30"
       >
         <Plus size={26} />
       </button>
@@ -298,7 +298,7 @@ export default function Expiry() {
         footer={
           <>
             <Button variant="ghost" onClick={handleDismissNotif}>暂不</Button>
-            <Button variant="primary" onClick={handleEnableNotif}>开启通知</Button>
+            <Button variant="primary" tone="peach" onClick={handleEnableNotif}>开启通知</Button>
           </>
         }
       >

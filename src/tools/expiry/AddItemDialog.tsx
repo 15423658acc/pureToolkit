@@ -155,7 +155,7 @@ export function AddItemDialog({
       footer={
         <>
           <Button variant="ghost" onClick={onClose} disabled={saving}>取消</Button>
-          <Button variant="primary" onClick={handleSave} disabled={saving || !valid}>
+          <Button variant="primary" tone="peach" onClick={handleSave} disabled={saving || !valid}>
             保存
           </Button>
         </>
@@ -172,7 +172,7 @@ export function AddItemDialog({
                 className={clsx(
                   'px-3 h-8 rounded-full text-xs font-medium transition',
                   tag === t
-                    ? 'bg-stone-900 text-white'
+                    ? 'bg-[#ffad99] text-stone-900 hover:bg-[#ff9a83]'
                     : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                 )}
               >
@@ -199,7 +199,7 @@ export function AddItemDialog({
                     className={clsx(
                       'px-3 h-8 rounded-full text-xs font-medium transition',
                       customTagId === ct.id
-                        ? 'bg-red-500 text-white'
+                        ? 'bg-[#ffad99] text-stone-900'
                         : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                     )}
                   >
@@ -225,7 +225,7 @@ export function AddItemDialog({
                 <button
                   key={p.name}
                   onClick={() => applyPreset(p)}
-                  className="px-3 h-8 rounded-full text-xs font-medium bg-red-50 text-red-600 hover:bg-red-100 transition"
+                  className="px-3 h-8 rounded-full text-xs font-medium bg-[#fff0eb] text-[#d9644a] hover:bg-[#ffe0d5] transition"
                 >
                   {p.name}
                 </button>

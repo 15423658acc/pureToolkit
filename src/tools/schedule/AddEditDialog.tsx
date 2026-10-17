@@ -121,7 +121,7 @@ export function AddEditDialog({
         footer={
           <>
             <Button variant="ghost" onClick={onClose}>取消</Button>
-            <Button variant="primary" onClick={() => void handleSave()}>保存</Button>
+            <Button variant="primary" tone="purple" onClick={() => void handleSave()}>保存</Button>
           </>
         }
       >

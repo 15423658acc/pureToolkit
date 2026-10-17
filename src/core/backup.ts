@@ -6,8 +6,12 @@
  */
 import {
   db,
+  type Birthday,
+  type ExpiryCustomTag,
   type ExpiryItem,
   type MediaItem,
+  type PomodoroSession,
+  type PomodoroTodo,
   type ScheduleCompletion,
   type ScheduleItem,
   type ScheduleTagDef,
@@ -22,10 +26,14 @@ export interface BackupPayload {
     wheelTemplates: WheelTemplate[]
     wheelHistory: WheelHistory[]
     expiryItems: ExpiryItem[]
+    expiryCustomTags: ExpiryCustomTag[]
     mediaItems: MediaItem[]
     scheduleItems: ScheduleItem[]
     scheduleCompletions: ScheduleCompletion[]
     scheduleTags: ScheduleTagDef[]
+    pomodoroTodos: PomodoroTodo[]
+    pomodoroSessions: PomodoroSession[]
+    birthdays: Birthday[]
   }
 }
 
@@ -34,18 +42,26 @@ export async function exportAllData(): Promise<BackupPayload> {
     wheelTemplates,
     wheelHistory,
     expiryItems,
+    expiryCustomTags,
     mediaItems,
     scheduleItems,
     scheduleCompletions,
-    scheduleTags
+    scheduleTags,
+    pomodoroTodos,
+    pomodoroSessions,
+    birthdays
   ] = await Promise.all([
     db.wheelTemplates.toArray(),
     db.wheelHistory.toArray(),
     db.expiryItems.toArray(),
+    db.expiryCustomTags.toArray(),
     db.mediaItems.toArray(),
     db.scheduleItems.toArray(),
     db.scheduleCompletions.toArray(),
-    db.scheduleTags.toArray()
+    db.scheduleTags.toArray(),
+    db.pomodoroTodos.toArray(),
+    db.pomodoroSessions.toArray(),
+    db.birthdays.toArray()
   ])
   return {
     version: 1,
@@ -54,10 +70,14 @@ export async function exportAllData(): Promise<BackupPayload> {
       wheelTemplates,
       wheelHistory,
       expiryItems,
+      expiryCustomTags,
       mediaItems,
       scheduleItems,
       scheduleCompletions,
-      scheduleTags
+      scheduleTags,
+      pomodoroTodos,
+      pomodoroSessions,
+      birthdays
     }
   }
 }
@@ -86,26 +106,36 @@ export async function importFromJSON(file: File): Promise<{ ok: boolean; message
     }
     const d: BackupPayload['data'] = payload.data
     await db.transaction('rw', [
-      db.wheelTemplates, db.wheelHistory, db.expiryItems, db.mediaItems,
-      db.scheduleItems, db.scheduleCompletions, db.scheduleTags
+      db.wheelTemplates, db.wheelHistory, db.expiryItems, db.expiryCustomTags,
+      db.mediaItems, db.scheduleItems, db.scheduleCompletions, db.scheduleTags,
+      db.pomodoroTodos, db.pomodoroSessions, db.birthdays
     ], async () => {
       await Promise.all([
         db.wheelTemplates.bulkPut(d.wheelTemplates ?? []),
         db.wheelHistory.bulkPut(d.wheelHistory ?? []),
         db.expiryItems.bulkPut(d.expiryItems ?? []),
+        db.expiryCustomTags.bulkPut(d.expiryCustomTags ?? []),
         db.mediaItems.bulkPut(d.mediaItems ?? []),
         db.scheduleItems.bulkPut(d.scheduleItems ?? []),
         db.scheduleCompletions.bulkPut(d.scheduleCompletions ?? []),
-        db.scheduleTags.bulkPut(d.scheduleTags ?? [])
+        db.scheduleTags.bulkPut(d.scheduleTags ?? []),
+        db.pomodoroTodos.bulkPut(d.pomodoroTodos ?? []),
+        db.pomodoroSessions.bulkPut(d.pomodoroSessions ?? []),
+        db.birthdays.bulkPut(d.birthdays ?? [])
       ])
     })
     const count =
       (d.wheelTemplates?.length ?? 0) +
+      (d.wheelHistory?.length ?? 0) +
       (d.expiryItems?.length ?? 0) +
+      (d.expiryCustomTags?.length ?? 0) +
       (d.mediaItems?.length ?? 0) +
       (d.scheduleItems?.length ?? 0) +
       (d.scheduleCompletions?.length ?? 0) +
-      (d.scheduleTags?.length ?? 0)
+      (d.scheduleTags?.length ?? 0) +
+      (d.pomodoroTodos?.length ?? 0) +
+      (d.pomodoroSessions?.length ?? 0) +
+      (d.birthdays?.length ?? 0)
     return { ok: true, message: `已恢复 ${count} 条记录` }
   } catch (e) {
     return { ok: false, message: '导入失败：' + (e as Error).message }

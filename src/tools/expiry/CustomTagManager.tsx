@@ -213,7 +213,7 @@ export function CustomTagManager({ open, onClose, onSaved }: CustomTagManagerPro
           </Field>
 
           <Button
-            variant="primary"
+            variant="primary" tone="peach"
             className="w-full"
             onClick={handleSave}
             disabled={!valid}

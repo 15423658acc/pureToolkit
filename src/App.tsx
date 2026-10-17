@@ -8,6 +8,8 @@ const WheelPage = lazy(() => import('./tools/wheel/Wheel'))
 const ExpiryPage = lazy(() => import('./tools/expiry/Expiry'))
 const MediaListPage = lazy(() => import('./tools/media-list/MediaList'))
 const SchedulePage = lazy(() => import('./tools/schedule/Schedule'))
+const PomodoroPage = lazy(() => import('./tools/pomodoro/Pomodoro'))
+const BirthdayPage = lazy(() => import('./tools/birthday/Birthday'))
 
 function Loading() {
   return (
@@ -28,6 +30,8 @@ export default function App() {
             <Route path="/expiry" element={<ExpiryPage />} />
             <Route path="/media" element={<MediaListPage />} />
             <Route path="/schedule" element={<SchedulePage />} />
+            <Route path="/pomodoro" element={<PomodoroPage />} />
+            <Route path="/birthday" element={<BirthdayPage />} />
             <Route
               path="*"
               element={

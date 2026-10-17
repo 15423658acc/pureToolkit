@@ -156,7 +156,7 @@ export function TagPicker({
               <Button variant="ghost" size="sm" onClick={() => setShowCreate(false)}>
                 取消
               </Button>
-              <Button variant="primary" size="sm" onClick={() => void handleCreate()}>
+              <Button variant="primary" tone="purple" size="sm" onClick={() => void handleCreate()}>
                 创建
               </Button>
             </div>

@@ -248,7 +248,7 @@ export default function Wheel() {
       }
       footer={
         <Button
-          variant="primary"
+          variant="primary" tone="amber"
           size="lg"
           onClick={handleSpin}
           disabled={!canSpin}
@@ -312,7 +312,7 @@ export default function Wheel() {
         footer={
           <>
             <Button variant="ghost" onClick={() => setSaveOpen(false)}>取消</Button>
-            <Button variant="primary" onClick={handleSaveAsTemplate}>保存</Button>
+            <Button variant="primary" tone="amber" onClick={handleSaveAsTemplate}>保存</Button>
           </>
         }
       >

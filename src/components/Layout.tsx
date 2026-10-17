@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 interface LayoutProps {
   title: ReactNode
-  accent?: 'wheel' | 'expiry' | 'media' | 'schedule' | 'stone'
+  accent?: 'wheel' | 'expiry' | 'media' | 'schedule' | 'pomodoro' | 'birthday' | 'stone'
   /** 顶部右上角动作区 */
   actions?: ReactNode
   children: ReactNode
@@ -15,9 +15,11 @@ interface LayoutProps {
 
 const ACCENTS = {
   wheel: 'text-amber-600',
-  expiry: 'text-red-500',
+  expiry: 'text-[#d9644a]',
   media: 'text-blue-500',
   schedule: 'text-purple-500',
+  pomodoro: 'text-rose-500',
+  birthday: 'text-orange-500',
   stone: 'text-stone-700'
 }
 

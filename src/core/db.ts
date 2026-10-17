@@ -114,6 +114,59 @@ export interface ScheduleTagDef {
   color: string               // 颜色键，如 'blue' | 'emerald' | 'purple' | 'amber' ...
 }
 
+/* 番茄钟：今日待办 */
+export interface PomodoroTodo {
+  id?: number
+  title: string
+  /** 已完成的番茄数（不是完成状态，是累计） */
+  completedPomodoros: number
+  /** 是否整体完成（用户主动勾选） */
+  done: boolean
+  /** 完成时间 */
+  completedAt?: number
+  /** 排序 */
+  sort: number
+  /** yyyy-mm-dd，用于今日待办筛选 */
+  date: string
+  createdAt: number
+  updatedAt: number
+}
+
+/* 番茄钟：专注记录（每次完成一个番茄时段写入） */
+export interface PomodoroSession {
+  id?: number
+  /** 关联的 todoId（可空，纯计时无 todo） */
+  todoId?: number
+  todoTitle?: string
+  /** 专注时长（秒） */
+  durationSec: number
+  /** 完成时的时间戳 */
+  finishedAt: number
+  /** 当日 yyyy-mm-dd（用于按日聚合统计） */
+  date: string
+  /** 类型：work | short_break | long_break */
+  type: 'work' | 'short_break' | 'long_break'
+}
+
+/* 生日倒计时 */
+export interface Birthday {
+  id?: number
+  name: string
+  /** 关系标签：家人/朋友/同事/自定义 */
+  relation: string
+  /** 是否农历生日 */
+  isLunar: boolean
+  /** 农历年/月/日 or 公历年/月/日，字符串 yyyy-mm-dd */
+  birthday: string
+  /** 提前 N 天提醒 */
+  remindAdvance: number       // 0/1/3/7/15
+  /** 备注（礼物建议、电话等） */
+  notes?: string
+  /** 创建时间 */
+  createdAt: number
+  updatedAt: number
+}
+
 /* ============================================================
  * Dexie DB
  * ============================================================ */
@@ -126,6 +179,9 @@ class PureToolkitDB extends Dexie {
   scheduleItems!: Table<ScheduleItem, number>
   scheduleCompletions!: Table<ScheduleCompletion, number>
   scheduleTags!: Table<ScheduleTagDef, number>
+  pomodoroTodos!: Table<PomodoroTodo, number>
+  pomodoroSessions!: Table<PomodoroSession, number>
+  birthdays!: Table<Birthday, number>
 
   constructor() {
     super('puretoolkit')
@@ -158,6 +214,20 @@ class PureToolkitDB extends Dexie {
       scheduleCompletions: '++id, scheduleId, date, completed, skippedAt, completedAt',
       scheduleTags: '++id, name'
     })
+    // v4: 番茄钟 + 生日倒计时
+    this.version(4).stores({
+      wheelTemplates: '++id, name, isPreset, updatedAt',
+      wheelHistory: '++id, spunAt',
+      expiryItems: '++id, name, tag, endDate, archived, updatedAt',
+      expiryCustomTags: '++id, name',
+      mediaItems: '++id, title, type, status, addedAt, completedAt, sort',
+      scheduleItems: '++id, title, tag, date, done, repeat, sort, updatedAt',
+      scheduleCompletions: '++id, scheduleId, date, completed, skippedAt, completedAt',
+      scheduleTags: '++id, name',
+      pomodoroTodos: '++id, date, done, sort',
+      pomodoroSessions: '++id, date, type, todoId, finishedAt',
+      birthdays: '++id, name, relation, isLunar, remindAdvance'
+    })
   }
 }
 
@@ -173,10 +243,14 @@ export async function clearAllData(): Promise<void> {
     db.wheelTemplates.clear(),
     db.wheelHistory.clear(),
     db.expiryItems.clear(),
+    db.expiryCustomTags.clear(),
     db.mediaItems.clear(),
     db.scheduleItems.clear(),
     db.scheduleCompletions.clear(),
-    db.scheduleTags.clear()
+    db.scheduleTags.clear(),
+    db.pomodoroTodos.clear(),
+    db.pomodoroSessions.clear(),
+    db.birthdays.clear()
   ])
 }
 
@@ -186,10 +260,14 @@ export async function isDBEmpty(): Promise<boolean> {
     db.wheelTemplates.count(),
     db.wheelHistory.count(),
     db.expiryItems.count(),
+    db.expiryCustomTags.count(),
     db.mediaItems.count(),
     db.scheduleItems.count(),
     db.scheduleCompletions.count(),
-    db.scheduleTags.count()
+    db.scheduleTags.count(),
+    db.pomodoroTodos.count(),
+    db.pomodoroSessions.count(),
+    db.birthdays.count()
   ])
   return counts.every((c) => c === 0)
 }

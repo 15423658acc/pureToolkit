@@ -189,7 +189,7 @@ export default function Schedule() {
           <button
             aria-label="添加日程"
             onClick={() => { setEditingItem(undefined); setAddEditOpen(true) }}
-            className="w-12 h-12 rounded-full bg-stone-900 text-white shadow-lg hover:bg-stone-800 inline-flex items-center justify-center transition active:scale-95"
+            className="w-12 h-12 rounded-full bg-purple-500 text-white shadow-lg hover:bg-purple-600 inline-flex items-center justify-center transition active:scale-95"
           >
             <Plus size={22} />
           </button>

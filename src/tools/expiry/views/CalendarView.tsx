@@ -98,7 +98,7 @@ export function CalendarView({ items, onEdit }: CalendarViewProps) {
               className={clsx(
                 'min-h-14 flex flex-col items-center justify-start pt-1.5 gap-1 text-xs relative',
                 inMonth ? 'bg-white' : 'bg-stone-50',
-                isSel && 'ring-2 ring-red-400 ring-inset',
+                isSel && 'ring-2 ring-[#ffad99] ring-inset',
                 dayItems.length === 0 && 'cursor-default'
               )}
             >
@@ -106,7 +106,7 @@ export function CalendarView({ items, onEdit }: CalendarViewProps) {
                 className={clsx(
                   'inline-flex items-center justify-center text-xs h-5 w-5 rounded-full',
                   inMonth ? 'text-stone-700' : 'text-stone-300',
-                  isToday && 'bg-red-500 text-white font-semibold'
+                  isToday && 'bg-[#ffad99] text-stone-900 font-semibold'
                 )}
               >
                 {format(d, 'd')}

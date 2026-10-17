@@ -72,9 +72,9 @@ const CORE_TOOLS: ToolMeta[] = [
 ]
 
 const EXTENSION_TOOLS: ToolMeta[] = [
-  { id: 'pomodoro', name: '番茄钟待办', desc: '待办 + 番茄计时', Icon: Clock, accent: 'text-rose-500', bg: 'from-rose-50 to-rose-100', to: '/pomodoro', available: false, badge: '即将' },
+  { id: 'pomodoro', name: '番茄钟待办', desc: '待办 + 番茄计时', Icon: Clock, accent: 'text-rose-500', bg: 'from-rose-50 to-rose-100', to: '/pomodoro', available: true },
   { id: 'habit', name: '习惯打卡', desc: '连续天数养成', Icon: Target, accent: 'text-emerald-500', bg: 'from-emerald-50 to-emerald-100', to: '/habit', available: false, badge: '即将' },
-  { id: 'birthday', name: '生日倒计时', desc: '亲友生日 + 农历', Icon: Sun, accent: 'text-orange-500', bg: 'from-orange-50 to-orange-100', to: '/birthday', available: false, badge: '即将' },
+  { id: 'birthday', name: '生日倒计时', desc: '亲友生日 + 农历', Icon: Sun, accent: 'text-orange-500', bg: 'from-orange-50 to-orange-100', to: '/birthday', available: true },
   { id: 'password', name: '密码生成器', desc: '强度检测 + 本地生成', Icon: KeyRound, accent: 'text-slate-500', bg: 'from-slate-50 to-slate-100', to: '/password', available: false, badge: '即将' },
   { id: 'unit', name: '单位换算', desc: '厨房 / 长度 / 重量', Icon: Ruler, accent: 'text-teal-500', bg: 'from-teal-50 to-teal-100', to: '/unit', available: false, badge: '即将' },
   { id: 'flashcard', name: '本地闪卡', desc: '翻转卡牌自测', Icon: Leaf, accent: 'text-lime-500', bg: 'from-lime-50 to-lime-100', to: '/flashcard', available: false, badge: '即将' }

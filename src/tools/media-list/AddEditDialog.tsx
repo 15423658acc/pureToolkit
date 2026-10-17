@@ -160,7 +160,7 @@ export function AddEditDialog({ open, onClose, editing, defaultType = 'book', on
           <Button variant="ghost" onClick={onClose} disabled={saving}>
             取消
           </Button>
-          <Button variant="primary" onClick={onSave} disabled={saving}>
+          <Button variant="primary" tone="blue" onClick={onSave} disabled={saving}>
             保存
           </Button>
         </>

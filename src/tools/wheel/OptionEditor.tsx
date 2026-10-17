@@ -155,7 +155,7 @@ export function OptionEditor({ options, onChange, disabled }: OptionEditorProps)
         footer={
           <>
             <Button variant="ghost" onClick={() => setAddOpen(false)}>取消</Button>
-            <Button variant="primary" onClick={handleAdd}>添加</Button>
+            <Button variant="primary" tone="amber" onClick={handleAdd}>添加</Button>
           </>
         }
       >
@@ -183,7 +183,7 @@ export function OptionEditor({ options, onChange, disabled }: OptionEditorProps)
             <Button variant="danger" onClick={handleDelete}>
               <Trash size={14} /> 删除
             </Button>
-            <Button variant="primary" onClick={handleSaveWeight}>保存</Button>
+            <Button variant="primary" tone="amber" onClick={handleSaveWeight}>保存</Button>
           </>
         }
       >

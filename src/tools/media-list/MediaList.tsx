@@ -138,7 +138,7 @@ export default function MediaList() {
           }
           action={
             items.length === 0 ? (
-              <Button variant="primary" size="sm" onClick={onAdd}>
+              <Button variant="primary" tone="blue" size="sm" onClick={onAdd}>
                 <Plus size={14} /> 添加条目
               </Button>
             ) : undefined
@@ -164,7 +164,7 @@ export default function MediaList() {
         aria-label="添加"
         className={clsx(
           'fixed right-4 bottom-6 z-40 w-14 h-14 rounded-full',
-          'bg-stone-900 text-white shadow-lg hover:bg-stone-800 active:bg-stone-950',
+          'bg-blue-500 text-white shadow-lg hover:bg-blue-600 active:bg-blue-700',
           'inline-flex items-center justify-center transition safe-bottom'
         )}
       >

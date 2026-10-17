@@ -224,7 +224,7 @@ export function FilterBar({
             <Button variant="ghost" onClick={clearFilter}>
               清除
             </Button>
-            <Button variant="primary" onClick={() => setFilterOpen(false)}>
+            <Button variant="primary" tone="blue" onClick={() => setFilterOpen(false)}>
               完成
             </Button>
           </>
