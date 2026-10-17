@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#fafafa"/>
+  <rect x="56" y="56" width="180" height="180" rx="32" fill="#f59e0b"/>
+  <rect x="276" y="56" width="180" height="180" rx="32" fill="#ef4444"/>
+  <rect x="56" y="276" width="180" height="180" rx="32" fill="#3b82f6"/>
+  <rect x="276" y="276" width="180" height="180" rx="32" fill="#a855f7"/>
+  <g stroke="#fafafa" stroke-width="20" stroke-linecap="round" fill="none">
+    <circle cx="146" cy="146" r="42"/>
+    <line x1="146" y1="146" x2="170" y2="120"/>
+  </g>
+  <g fill="none" stroke="#fafafa" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="366,108 366,184 412,184"/>
+  </g>
+  <g fill="none" stroke="#fafafa" stroke-width="20" stroke-linecap="round">
+    <line x1="100" y1="366" x2="192" y2="366"/>
+    <line x1="100" y1="404" x2="160" y2="404"/>
+  </g>
+  <g fill="none" stroke="#fafafa" stroke-width="20" stroke-linecap="round">
+    <rect x="306" y="326" width="120" height="100" rx="16"/>
+    <line x1="338" y1="306" x2="338" y2="336"/>
+    <line x1="394" y1="306" x2="394" y2="336"/>
+  </g>
+</svg>
